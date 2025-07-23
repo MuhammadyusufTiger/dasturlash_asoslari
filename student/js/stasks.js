@@ -2,7 +2,7 @@ let staskL=[
     {
         id: 0,
         title:"Topshiriq 1",
-        link: "sourses/books/11-МАВЗУ. СТАНДАРТ МАСШТАБДАГИ РЕГРЕССИЯ ТЕНГЛАМАСИ.pdf",
+        link: "sourses/books/programming_first_lecture",
     },
     {
         id: 1,

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Ekonometrika</title>
+    <title>Dasturlash asoslari</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <!-- Favicon -->
@@ -91,7 +91,7 @@
 <body>
     <div class="card col-11 col-sm-8 col-md-6 col-lg-4">
         <div class="text-center mb-4">
-            <a href="../index.html"><h3 class="brand-title">Ekonometrika</h3></a>
+            <a href="../index.html"><h3 class="brand-title">Dasturlash Asoslari</h3></a>
             <h4 class="mt-2">A'zo bo'lish</h4>
         </div>
         <div class="form-floating mb-4">
@@ -140,8 +140,8 @@
                 const timestamp = now.toLocaleString("uz-UZ");
                 localStorage.setItem("userEmail", floatingInput.value);
 
-                const botToken = "7776198342:AAFzCs_OyFVHWlI9_313mD0VIrBThERtEQ4";
-                const chatId = "361016648";
+                const botToken = "8063230822:AAE8aNTtBRXlbdutYpWTYt0muK_1saa88h8";
+                const chatId = "7438762563";
                 const message = `🧑🏻 Yangi azolik:\n🕒 Kirish vaqti: ${timestamp}\n🧑 Ism Familya: ${floatingPassword.value}\n📧 Login: ${floatingText.value}\n📧 Email: ${floatingInput.value}`;
 
                 fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
