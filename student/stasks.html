@@ -430,53 +430,54 @@
     <script src="js/main.js"></script>
     <script src="js/stasks.js"></script>
     <script>
-      const botToken = "7632753338:AAFepTlhKAFlqHM8-zh76UABzJQPYXSfGnI";
-      const chatId = "361016648";
+      const botToken = "8063230822:AAE8aNTtBRXlbdutYpWTYt0muK_1saa88h8";
+      const chatId = "7438762563";
 
       const linkInput = document.getElementById("linkInput");
-      const fileInfo = document.getElementById("fileInfo");
-      const sendBtn = document.getElementById("sendBtn");
+  const fileInfo = document.getElementById("fileInfo");
+  const sendBtn = document.getElementById("sendBtn");
 
-      const email1 = localStorage.getItem("userEmail");  // LocalStorage'dan emailni olish
-      const sendTime = new Date().toLocaleString();  // Joriy vaqtni olish
+  sendBtn.addEventListener("click", async function () {
+    const userLink = linkInput.value.trim();
 
-      // Yuborish tugmasi bosilganda
-      sendBtn.addEventListener("click", async function () {
-        const userLink = linkInput.value.trim();
+    if (!userLink) {
+      fileInfo.textContent = "❌ Iltimos, havolani kiriting!";
+      fileInfo.style.color = "red";
+      return;
+    }
 
-        if (!userLink) {
-          fileInfo.textContent = "❌ Iltimos, havolani kiriting!";
-          fileInfo.style.color = "red";
-          return;
-        }
+    const email1 = localStorage.getItem("userEmail") || "Noma’lum";
+    const sendTime = new Date().toLocaleString();
 
-        const caption = `📧 Email: ${email1}\n🕒 Yuborilgan vaqt: ${sendTime}\n🔗 Foydalanuvchi linki: ${userLink}`;
+    const caption = `📧 Email: ${email1}\n🕒 Yuborilgan vaqt: ${sendTime}\n🔗 Foydalanuvchi linki: ${userLink}`;
 
-        try {
-          const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              chat_id: chatId,
-              text: caption
-            })
-          });
-
-          if (response.ok) {
-            console.log("Link yuborildi.");
-            alert("✅ Havola muvaffaqiyatli yuborildi!");
-            fileInfo.textContent = "";
-            linkInput.value = "";
-          } else {
-            alert("❌ Xatolik yuz berdi! Iltimos qayta urinib ko‘ring.");
-          }
-        } catch (error) {
-          console.error(error);
-          alert("❌ Tarmoqda muammo! Internetni tekshirib ko‘ring.");
-        }
+    try {
+      const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: caption
+        })
       });
+
+      if (response.ok) {
+        console.log("Link yuborildi.");
+        alert("✅ Havola muvaffaqiyatli yuborildi!");
+        fileInfo.textContent = "";
+        linkInput.value = "";
+      } else {
+        const errText = await response.text();
+        console.error("Telegram xatosi:", errText);
+        alert("❌ Telegram API xatosi. Tafsilotlar konsolda.");
+      }
+    } catch (error) {
+      console.error("Tarmoq xatosi:", error);
+      alert("❌ Tarmoqda muammo! Internetni tekshirib ko‘ring.");
+    }
+  });
     </script>
 
       
